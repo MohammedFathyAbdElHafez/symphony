@@ -1,0 +1,6 @@
+.home-pg {
+    background-image: url('public/images/bg-01.jpg');
+    height: 700px;
+    background-position-x: center;
+    background-size: contain;
+}
