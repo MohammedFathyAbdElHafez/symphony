@@ -1,6 +1,6 @@
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="header">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Symphony') }}
@@ -12,14 +12,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/') }}">{{ __('Symphony') }}</a>
-                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('artists') }}">{{ __('Artists') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('/venues') }}">{{ __('Venues') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('/shows') }}">{{ __('Shows') }}</a>
                                 </li>
                     </ul>
 

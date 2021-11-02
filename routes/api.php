@@ -21,7 +21,8 @@ use App\Http\Controllers\API\ShowController;
 */
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
-     
+Route::resource('artists', ArtistController::class);
+
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('artists', ArtistController::class);
     Route::resource('venues', VenueController::class);

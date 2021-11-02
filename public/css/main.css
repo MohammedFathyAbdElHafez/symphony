@@ -4,3 +4,36 @@
     background-position-x: center;
     background-size: contain;
 }
+
+.add-artists {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.page-title {
+    font-weight: bold;
+    text-align: center;
+}
+
+#artist-create,
+#show-create,
+#venue-create {
+    float: right;
+    padding: 1%;
+}
+
+#header {
+    background-color: #d7d4d4 !important;
+}
+
+.artist-card {
+    margin-bottom: 5%;
+}
+
+.delete-artist {
+    float: right;
+}
+
+.edit-form {
+    margin-top: 5%
+}

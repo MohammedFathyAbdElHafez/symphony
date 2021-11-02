@@ -19,4 +19,15 @@ class Artist extends Model
         'contact',
         'tool',
     ];
+
+    public function shows() {
+        return $this->hasMany('App\Models\Show','artist_id','id');
+    }
+
+
+    public function venues(){
+        return $this -> belongsToMany('App\Models\Venue','artist_venue','artist_id','venue_id','id','id');
+    }
+
+
 }

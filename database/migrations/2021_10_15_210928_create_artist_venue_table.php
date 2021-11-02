@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShowsTable extends Migration
+class CreateArtistVenueTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateShowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shows', function (Blueprint $table) {
+        Schema::create('artist_venue', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
             $table->unsignedBigInteger('venue_id');
             $table->foreign('venue_id')->references('id')->on('venues');
             $table->unsignedBigInteger('artist_id');
             $table->foreign('artist_id')->references('id')->on('artists');
-            $table->timestamps();
         });
     }
 
@@ -32,6 +29,6 @@ class CreateShowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shows');
+        Schema::dropIfExists('artist_venue');
     }
 }

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Symphony') }}</title>
 
     <!-- Scripts -->
     <script src="{{ url('resources/js/app.js') }}" defer></script>
@@ -19,7 +19,6 @@
     <!-- Styles -->
     <link href="{{ url('resources/css/app.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
 <!--===============================================================================================-->	
 <link rel="icon" type="image/png" href="{{ asset('login/images/icons/favicon.ico') }}"/>
@@ -43,4 +42,9 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('login/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('login/css/main.css') }}">
 <!--===============================================================================================-->
+
+<link href="{{ config('app.asset_url') }}/css/main.css" rel="stylesheet">
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>

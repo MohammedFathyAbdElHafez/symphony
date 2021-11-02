@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
+use App\Models\Show;
+use App\Models\Artist;
 use App\Models\Venue;
 use App\Http\Resources\Venue as VenueResource;
    
@@ -14,10 +16,34 @@ class VenueController extends BaseController
     public function index()
     {
         $venues = Venue::all();
-        return $this->sendResponse(VenueResource::collection($venues), 'Venues fetched.');
+        $this->sendResponse(VenueResource::collection($venues), 'Venues fetched.');
+        return view('venue.index', ['venues' => $venues]);
+    
+    
     }
 
-    
+    public function create() {
+        $artists = Artist::all();
+        return view('venue.create', [ 'artists' => $artists]);
+
+    } 
+
+    public function edit($id) {
+
+        $artists = Artist::all();
+
+        $venue = Venue::find($id);
+
+        $artist_venue = $venue->artists->pluck('id');
+
+        if (is_null($venue)) {
+            return $this->sendError('venue does not exist.');
+        }
+
+        return view('venue.edit', ['venue' => $venue,'artists' => $artists, 'artistvenues' => $artist_venue]);
+
+    }   
+
     public function store(Request $request)
     {
         $input = $request->all();
@@ -29,7 +55,18 @@ class VenueController extends BaseController
             return $this->sendError($validator->errors());       
         }
         $venue = Venue::create($input);
-        return $this->sendResponse(new VenueResource($venue), 'Venue created.');
+
+        foreach($input['artist_id'] as $key => $val) {
+            $art = Venue::findOrFail($venue->id);
+            $art->artists()->attach([$val]);
+        }
+
+
+        $this->sendResponse(new VenueResource($venue), 'Venue created.');
+    
+        return redirect('venues');
+    
+    
     }
 
    
@@ -39,7 +76,13 @@ class VenueController extends BaseController
         if (is_null($venue)) {
             return $this->sendError('Venue does not exist.');
         }
-        return $this->sendResponse(new VenueResource($venue), 'Venue fetched.');
+        $venue_artist = Venue::find($id)->artists()->get();
+
+        $venue_show = Venue::find($id)->shows()->get();
+
+        $this->sendResponse(new VenueResource($venue), 'Venue fetched.');
+        return view('venue.show', ['venue' => $venue, 'artists' => $venue_artist, 'shows'  => $venue_show]);
+    
     }
     
 
@@ -60,12 +103,23 @@ class VenueController extends BaseController
         $venue->description = $input['description'];
         $venue->save();
         
-        return $this->sendResponse(new VenueResource($venue), 'Venue updated.');
+        foreach($input['artist_id'] as $key => $val) {
+            $art = Venue::findOrFail($venue->id);
+            $art->artists()->attach([$val]);
+        }
+
+        $this->sendResponse(new VenueResource($venue), 'Venue updated.');
+    
+        return redirect('venues/'.$venue->id);
+    
+    
     }
    
     public function destroy(Venue $venue)
     {
         $venue->delete();
-        return $this->sendResponse([], 'Venue deleted.');
+        $this->sendResponse([], 'Venue deleted.');
+        return redirect('venue');
+
     }
 }

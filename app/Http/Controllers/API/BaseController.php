@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
+use Illuminate\Support\Facades\Session;
 
 
 class BaseController extends Controller
@@ -20,7 +21,6 @@ class BaseController extends Controller
             'data'    => $result,
             'message' => $message,
         ];
-
         return response()->json($response, 200);
     }
 

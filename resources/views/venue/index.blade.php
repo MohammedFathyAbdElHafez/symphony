@@ -5,17 +5,17 @@
          
 
 <div class="add-artists">
-<a href="{{ url('artists/create')}}" id="artist-create" class="badge badge-primary"> Add Artist</a> 
+<a href="{{ url('venues/create')}}" id="venue-create" class="badge badge-primary"> Add Venue</a> 
 </div>
 
 
-<h1 class="page-title" > Artists' List</h1>
+<h1 class="page-title" > Venues' List</h1>
 
 <hr />
 
 
 <div class="row">
- @foreach($artists as $artist)
+ @foreach($venues as $venue)
 
                                     
 
@@ -23,16 +23,16 @@
     <div class="card">
       <div class="card-body">
 
-      <form action="{{route('artists.destroy',[$artist->id])}}" method="POST">
+      <form action="{{route('venues.destroy',[$venue->id])}}" method="POST">
  @csrf
  <input type="hidden" name="_method" value="DELETE">
  <button type="submit" class="delete-artist" style="float: right;">x</button>               
 </form>
 
 
-        <h5 class="card-title">{{ $artist->name }}</h5>
-        <p class="card-text">Contact: {{ $artist->contact }}</p>
-        <a href="{{ url('artists/'.$artist->id)}}" class="btn btn-primary">View Artist</a>
+        <h5 class="card-title">{{ $venue->title }}</h5>
+        <p class="card-text">Description: {{ $venue->description }}</p>
+        <a href="{{ url('venues/'.$venue->id)}}" class="btn btn-primary">View Venue</a>
       </div>
     </div>
   </div>

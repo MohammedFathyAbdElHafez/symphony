@@ -16,6 +16,7 @@ class Show extends Model
     protected $fillable = [
         'title',
         'description',
-        'time',
+        'venue_id',
+        'artist_id'
     ];
 }

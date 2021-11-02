@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Show;
 class Venue extends Model
 {
     use HasFactory;
@@ -19,6 +19,15 @@ class Venue extends Model
     ];
 
 
+
+    public function shows() {
+        return $this->hasMany('App\Models\Show','venue_id','id');
+    }
+
+
+    public function artists(){ 
+        return $this -> belongsToMany('App\Models\Artist','artist_venue','venue_id','artist_id','id','id');
+    }
 
 }
     

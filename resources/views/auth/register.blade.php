@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                                <input id="password-confirm" type="password" class="input100 form-control" placeholder="{{ __('Confirm Password') }}" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="input100 form-control" placeholder="{{ __('Confirm Password') }}" name="confirm_password" required autocomplete="new-password">
                         </div>
 
 
